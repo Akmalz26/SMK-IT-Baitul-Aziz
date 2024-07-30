@@ -34,14 +34,14 @@
                                 <a href="{{ route('berita.show', $item->id) }} " class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 30px 30px 30px 30px;">Read More</a>
                             </div>
                         </div>
-                        <div class="text-center p-4 pb-0">
+                        <div class="text-left p-4 pb-0">
                             <h3 class="mb-4">{{ $item->judul }}</h3>
                             <p class="mb-4">{{ $item->deskripsi }}</p>
                         </div>
                         <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{ $item->tgl }}</small>
-                            <!-- <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small> -->
+                            <small class="flex-fill text-left border-end py-2 px-3"><i class="fa fa-clock text-primary me-2"></i></i>{{ \Carbon\Carbon::parse($item->tgl)->isoFormat('dddd, D MMMM YYYY') }}</small>
+                            <!-- <small class="flex-fill text-left border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                            <small class="flex-fill text-left py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small> -->
                         </div>
                     </div>
                 </div>

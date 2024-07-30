@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ekstrakulikuler;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\ProfileSekolah;
@@ -16,8 +17,15 @@ class HomeController extends Controller
     public function index()
     {
         $sambutan = Sambutan::first();
-        return view('home.index',compact('sambutan'));
+        $latestBerita = Berita::orderBy('created_at', 'desc')->take(3)->get();
+        return view('home.index',compact('sambutan', 'latestBerita'));
     }    
+
+    public function getLatestBerita()
+{
+    $latestBerita = Berita::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 berita terbaru
+    return $latestBerita;
+}
     public function kontak()
     {
         return view('home.kontak');
@@ -27,6 +35,30 @@ class HomeController extends Controller
     {
         $sejarah = Sejarah::first();
         return view('informasi_sekolah.sejarah', compact('sejarah'));
+    }
+    public function sarana()
+    {
+        $sarana = ProfileSekolah::first();
+        return view('informasi_sekolah.sarana', compact('sarana'));
+    }
+
+    public function visiMisi()
+    {
+        $visiMisi = ProfileSekolah::first();
+        $latestBerita = $this->getLatestBerita();
+        return view('informasi_sekolah.visi_misi', compact('visiMisi', 'latestBerita'));
+    }
+    public function identitas()
+    {
+        $identitas = ProfileSekolah::first();
+        $latestBerita = $this->getLatestBerita();
+        return view('informasi_sekolah.identitas', compact('identitas', 'latestBerita'));
+    }
+    public function ekstrakulikuler()
+    {
+        $ekskul = Ekstrakulikuler::first();
+        $latestBerita = $this->getLatestBerita();
+        return view('informasi_sekolah.ekstrakulikuler', compact('ekskul', 'latestBerita'));
     }
 
     public function berita()

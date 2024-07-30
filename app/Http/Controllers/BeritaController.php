@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -11,10 +12,11 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $berita = Berita::latest()->get();
+        $berita = Berita::where('user_id', auth()->user()->id)->latest()->get();
         return view('admin.berita.index', compact('berita'));
     }
 
+    
     public function create()
     {
         return view('admin.berita.create');
@@ -47,6 +49,7 @@ class BeritaController extends Controller
         $berita->konten = $request->konten;
         $berita->tgl = $request->tgl;
         $berita->image = $image_url;
+        $berita->user_id = auth()->user()->id;
         $berita->save();
 
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil disimpan');
@@ -54,7 +57,7 @@ class BeritaController extends Controller
 
     public function edit($id)
     {
-        $berita = Berita::findOrFail($id);
+        $berita = Berita::where('user_id', auth()->user()->id)->findOrFail($id);
         return view('admin.berita.edit', compact('berita'));
     }
 
@@ -72,7 +75,7 @@ class BeritaController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $berita = Berita::findOrFail($id);
+        $berita = Berita::where('user_id', auth()->user()->id)->findOrFail($id);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/images');
@@ -89,10 +92,16 @@ class BeritaController extends Controller
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui.');
     }
 
+    public function getLatestBerita()
+{
+    $latestBerita = Berita::orderBy('created_at', 'desc')->take(5)->get(); // Ambil 5 berita terbaru
+    return $latestBerita;
+}
     public function show($id)
     {
         $berita = Berita::findOrFail($id);
-        return view('admin.berita.show', compact('berita'));
+        $latestBerita = $this->getLatestBerita();
+        return view('admin.berita.show', compact('berita', 'latestBerita'));
     }
 
     public function destroy($id)

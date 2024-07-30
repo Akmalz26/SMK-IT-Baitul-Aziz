@@ -62,42 +62,92 @@
                         tabindex="0"></iframe>
                 </div>
                 <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <form action="{{ route('kontak.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Anda">
-                                    <label for="name">Nama Anda</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Anda">
-                                    <label for="email">Email Anda</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subjek">
-                                    <label for="subject">Subjek</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Tinggalkan pesan di sini" id="message" name="pesan" style="height: 150px"></textarea>
-                                    <label for="message">Pesan</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Kirim Pesan</button>
-                            </div>
-                        </div>
-                    </form>
+    <form id="contactForm" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Anda">
+                    <label for="name">Nama Anda</label>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Anda">
+                    <label for="email">Email Anda</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subjek">
+                    <label for="subject">Subjek</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tinggalkan pesan di sini" id="message" name="pesan" style="height: 150px"></textarea>
+                    <label for="message">Pesan</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" type="submit" id="submit-btn">Kirim Pesan</button>
+                <div id="loading" class="d-none">Mengirim...</div>
+            </div>
+        </div>
+    </form>
+    <div id="successMessage" class="alert alert-success mt-3 d-none">Pesan berhasil terkirim!</div>
+    <div id="errorMessage" class="alert alert-danger mt-3 d-none">Terjadi kesalahan, silakan coba lagi.</div>
+</div>
+
             </div>
         </div>
     </div>
     <!-- Contact End -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+
+            var isValid = true;
+            var formData = $(this).serialize();
+
+            // Validasi sederhana
+            $(this).find('input, textarea').each(function() {
+                if (!$(this).val()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            if (isValid) {
+                $('#loading').removeClass('d-none'); // Tampilkan loading
+                $('#submit-btn').prop('disabled', true); // Nonaktifkan tombol kirim
+
+                $.ajax({
+                    url: "{{ route('kontak.store') }}",
+                    type: "POST",
+                    data: formData,
+                    success: function(response) {
+                        $('#successMessage').removeClass('d-none').text(response.message);
+                        $('#errorMessage').addClass('d-none');
+                        $('#contactForm')[0].reset(); // Reset form setelah sukses
+                        $('#loading').addClass('d-none'); // Sembunyikan loading
+                        $('#submit-btn').prop('disabled', false); // Aktifkan tombol kirim kembali
+                    },
+                    error: function(response) {
+                        $('#errorMessage').removeClass('d-none').text('Terjadi kesalahan, silakan coba lagi.');
+                        $('#successMessage').addClass('d-none');
+                        $('#loading').addClass('d-none'); // Sembunyikan loading
+                        $('#submit-btn').prop('disabled', false); // Aktifkan tombol kirim kembali
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 
 @endsection

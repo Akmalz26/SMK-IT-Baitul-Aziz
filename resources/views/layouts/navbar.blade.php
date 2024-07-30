@@ -59,24 +59,24 @@
                     <a href="#" class="nav-link dropdown-toggle {{ request()->is('profil*') ? 'active' : '' }}" data-bs-toggle="dropdown">Informasi Sekolah</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="{{ route('sejarah') }}" class="dropdown-item {{ request()->is('profil/sejarah') ? 'active' : '' }}">Sejarah Singkat</a>
-                        <a href="profil/identitas-sekolah" class="dropdown-item {{ request()->is('profil/identitas-sekolah') ? 'active' : '' }}">Identitas Sekolah</a>
-                        <a href="profil/sarana-prasarana" class="dropdown-item {{ request()->is('profil/sarana-prasarana') ? 'active' : '' }}">Sarana Prasarana</a>
-                        <a href="profil/visi-misi" class="dropdown-item {{ request()->is('profil/visi-misi') ? 'active' : '' }}">Visi dan Misi</a>
-                        <a href="profil/ekstrakulikuler" class="dropdown-item {{ request()->is('profil/ekstrakulikuler') ? 'active' : '' }}">Ekstrakulikuler</a>
+                        <a href="{{ route('identitas.sekolah') }}" class="dropdown-item {{ request()->is('profil/identitas-sekolah') ? 'active' : '' }}">Identitas Sekolah</a>
+                        <a href="{{ route('sarana') }}" class="dropdown-item {{ request()->is('profil/sarana-prasarana') ? 'active' : '' }}">Sarana Prasarana</a>
+                        <a href="{{ route('visi.misi') }}" class="dropdown-item {{ request()->is('profil/visi-misi') ? 'active' : '' }}">Visi dan Misi</a>
+                        <a href="{{ route('ekskul') }}" class="dropdown-item {{ request()->is('profil/ekstrakulikuler') ? 'active' : '' }}">Ekstrakulikuler</a>
                     </div>
                 </div>  
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle {{ request()->is('jurusan*') ? 'active' : '' }}" data-bs-toggle="dropdown">Kompetensi Keahlian</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="galeri/foto" class="dropdown-item {{ request()->is('jurusan/pplg') ? 'active' : '' }}">PPLG</a>
+                        <a href="#" class="dropdown-item {{ request()->is('jurusan/pplg') ? 'active' : '' }}">PPLG</a>
                         <!-- <a href="galeri/video" class="dropdown-item {{ request()->is('jurusan/akutansi') ? 'active' : '' }}">Akutansi</a> -->
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle {{ request()->is('galeri*') ? 'active' : '' }}" data-bs-toggle="dropdown">Galeri</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="galeri/foto" class="dropdown-item {{ request()->is('galeri/foto') ? 'active' : '' }}">Galeri Foto</a>
-                        <a href="galeri/video" class="dropdown-item {{ request()->is('galeri/video') ? 'active' : '' }}">Galeri Video</a>
+                        <a href="#" class="dropdown-item {{ request()->is('galeri/foto') ? 'active' : '' }}">Galeri Foto</a>
+                        <a href="#" class="dropdown-item {{ request()->is('galeri/video') ? 'active' : '' }}">Galeri Video</a>
                     </div>
                 </div>
                 <a href="{{ route('berita') }}" class="nav-item nav-link {{ request()->is('berita') ? 'active' : '' }}">Berita</a>

@@ -29,8 +29,9 @@ class KontakController extends Controller
 
         Kontak::create($request->all());
 
-        return redirect()->route('kontak')
-                        ->with('success', 'Kontak berhasil ditambahkan.');
+        // return redirect()->route('kontak')
+        //                 ->with('success', 'Kontak telah terkirim.');
+        return response()->json(['message' => 'Pesan berhasil terkirim!'], 200);
     }
 
     public function show(Kontak $kontak)
@@ -58,8 +59,9 @@ class KontakController extends Controller
                         ->with('success', 'Kontak berhasil diperbarui.');
     }
 
-    public function destroy(Kontak $kontak)
+    public function destroy($id)
     {
+        $kontak = Kontak::find($id);
         $kontak->delete();
 
         return redirect()->route('kontak.index')

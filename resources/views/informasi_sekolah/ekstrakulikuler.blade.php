@@ -7,7 +7,7 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Identitas Sekolah</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Ekstrakulikuler</h1>
                 </div>
             </div>
         </div>
@@ -15,12 +15,12 @@
     <!-- Header End -->
 
     <div class="container py-5">
-        @if($identitas)
+        <!-- @if($ekskul) -->
             <div class="row">
                 <div class="col-lg-8 mb-4">
                     <div class="blog-item bg-light rounded shadow-sm p-4">
-                        <h3 class="mb-5">Data Sekolah</h3>
-                        <p>{!! $identitas->identitas !!}</p>
+                        <h3 class="mb-5">Ekstrakulikuler</h3>
+                        <p></p>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
@@ -61,11 +61,11 @@
                     
                 </div>
             </div>
-        @else
-            <div class="text-center">
+        <!-- @else -->
+            <!-- <div class="text-center">
                 <h3>Belum ada Konten</h3>
-            </div>
-        @endif
+            </div> -->
+        <!-- @endif -->
     </div>
 
 @endsection

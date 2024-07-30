@@ -24,6 +24,11 @@ Route::get('/profil', [HomeController::class, 'profil'])->name('profil');
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/profil/sejarah', [HomeController::class, 'sejarah'])->name('sejarah');
+Route::get('/profil/sarana-prasarana', [HomeController::class, 'sarana'])->name('sarana');
+Route::get('/profil/visi-misi', [HomeController::class, 'visiMisi'])->name('visi.misi');
+Route::get('/profil/identitas-sekolah', [HomeController::class, 'identitas'])->name('identitas.sekolah');
+Route::get('/profil/ekstrakulikuler', [HomeController::class, 'ekstrakulikuler'])->name('ekskul');
+Route::get('berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
 
 
 Route::middleware('auth')->group(function () {
@@ -39,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('berita.update');
     Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
     
-    Route::get('berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
     
     Route::get('dashboard/profil', [ProfilSekolahController::class, 'index'])->name('profil.sekolah');
     Route::get('dashboard/profil-create', [ProfilSekolahController::class, 'create'])->name('profil.sekolah.create');
@@ -68,7 +72,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('dashboard/kontak', [KontakController::class, 'index'])->name('kontak.index');
     Route::post('kontaks', [KontakController::class, 'store'])->name('kontak.store');
-    Route::delete('dashboard/kontak/{id}', [KontakController::class, 'destroy'])->name('kontak.destroy');
+    Route::delete('kontak/{id}', [KontakController::class, 'destroy'])->name('kontak.destroy');
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     

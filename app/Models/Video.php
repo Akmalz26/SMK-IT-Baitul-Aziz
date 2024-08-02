@@ -8,13 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'id_galeri',
-        'video'
-    ];
+    protected $fillable = ['galeri_id', 'title', 'video_url'];
 
     public function galeri()
     {
-        return $this->belongsTo(Galeri::class, 'id_galeri');
+        return $this->belongsTo(Galeri::class, 'galeri_id');
     }
 }

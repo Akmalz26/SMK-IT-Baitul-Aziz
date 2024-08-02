@@ -3,7 +3,9 @@
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\ManajemenGuruController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SambutanController;
@@ -74,6 +76,20 @@ Route::middleware('auth')->group(function () {
     Route::post('kontaks', [KontakController::class, 'store'])->name('kontak.store');
     Route::delete('kontak/{id}', [KontakController::class, 'destroy'])->name('kontak.destroy');
     
+    Route::get('dashboard/manajemen-guru', [ManajemenGuruController::class, 'index'])->name('manajemen.index');
+    Route::get('dashboard/manajemen-guru-create', [ManajemenGuruController::class, 'create'])->name('manajemen.create');
+    Route::post('dashboard/manajemen-guru-create', [ManajemenGuruController::class, 'store'])->name('manajemen.store');
+    Route::get('dashboard/manajemen-guru-edit{id}', [ManajemenGuruController::class, 'edit'])->name('manajemen.edit');
+    Route::put('dashboard/manajemen-guru-edit{id}', [ManajemenGuruController::class, 'update'])->name('manajemen.update'); 
+    Route::delete('dashboard/manajemen-guru{id}', [ManajemenGuruController::class, 'destroy'])->name('manajemen.destroy'); 
+
+    Route::get('dashboard/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
+    Route::get('dashboard/jurusan-create', [JurusanController::class, 'create'])->name('jurusan.create');
+    Route::post('dashboard/jurusan-create', [JurusanController::class, 'store'])->name('jurusan.store');
+    Route::get('dashboard/jurusan-edit{id}', [JurusanController::class, 'edit'])->name('jurusan.edit');
+    Route::put('dashboard/jurusan-edit{id}', [JurusanController::class, 'update'])->name('jurusan.update'); 
+    Route::delete('dashboard/jurusan{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy'); 
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
 });

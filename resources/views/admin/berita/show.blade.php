@@ -32,12 +32,12 @@
         <div class="col-lg-4 mb-4">
             <!-- Follow Us Section -->
             <div class="card bg-white p-4 rounded shadow mb-4">
-                <h4 class="mb-3">Follow Us</h4>
-                <div class="d-flex justify-content-between">
+                <h4 class="mb-3">Tentang Sekolah</h4>
+                <!-- <div class="d-flex justify-content-between">
                     <a href="https://www.instagram.com/smkita/" target="_blank"><img src="{{ asset('images/instagram.png') }}" alt="Instagram" style="width: 50px;"></a>
                     <a href="https://www.facebook.com/smkita/" target="_blank"><img src="{{ asset('images/facebook.png') }}" alt="Facebook" style="width: 50px;"></a>
                     <a href="https://www.youtube.com/smkita" target="_blank"><img src="{{ asset('images/youtube.png') }}" alt="YouTube" style="width: 50px;"></a>
-                </div>
+                </div> -->
                 <div class="ratio ratio-16x9 mt-4">
                     <iframe src="https://www.youtube.com/embed/etHq7lI2-BE?si=nFk-KP0mcby5iCna" title="YouTube video" allowfullscreen></iframe>
                 </div>
@@ -46,7 +46,7 @@
            
             <!-- Latest News Section -->
             <div class="card bg-white p-4 rounded shadow mb-4">
-                <h4 class="mb-3">Latest News</h4>
+                <h4 class="mb-3">Berita Terbaru</h4>
                 @foreach($latestBerita as $news)
                 <div class="mb-3">
                     <a href="{{ route('berita.show', $news->id) }}" class="text-decoration-none text-dark">

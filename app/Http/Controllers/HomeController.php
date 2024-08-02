@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ekstrakulikuler;
+use App\Models\ManajemenGuru;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\ProfileSekolah;
@@ -17,8 +18,9 @@ class HomeController extends Controller
     public function index()
     {
         $sambutan = Sambutan::first();
+        $gurus = ManajemenGuru::latest()->get();
         $latestBerita = Berita::orderBy('created_at', 'desc')->take(3)->get();
-        return view('home.index',compact('sambutan', 'latestBerita'));
+        return view('home.index',compact('sambutan', 'latestBerita', 'gurus'));
     }    
 
     public function getLatestBerita()
@@ -66,6 +68,4 @@ class HomeController extends Controller
         $berita = Berita::latest()->get();
         return view('home.berita', compact('berita'));
     }
-
-
 }

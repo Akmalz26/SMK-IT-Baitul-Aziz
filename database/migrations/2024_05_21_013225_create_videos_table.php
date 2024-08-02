@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_galeri');
-            $table->text('vdeo');
-            $table->foreign('id_galeri')->references('id')->on('galeris');
+            $table->foreignId('galeri_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('video_url');
             $table->timestamps();
         });
     }

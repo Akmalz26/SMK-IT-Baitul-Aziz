@@ -72,13 +72,13 @@
                         <!-- <a href="galeri/video" class="dropdown-item {{ request()->is('jurusan/akutansi') ? 'active' : '' }}">Akutansi</a> -->
                     </div>
                 </div>
-                <div class="nav-item dropdown">
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle {{ request()->is('galeri*') ? 'active' : '' }}" data-bs-toggle="dropdown">Galeri</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="#" class="dropdown-item {{ request()->is('galeri/foto') ? 'active' : '' }}">Galeri Foto</a>
                         <a href="#" class="dropdown-item {{ request()->is('galeri/video') ? 'active' : '' }}">Galeri Video</a>
                     </div>
-                </div>
+                </div> -->
                 <a href="{{ route('berita') }}" class="nav-item nav-link {{ request()->is('berita') ? 'active' : '' }}">Berita</a>
                 <a href="{{ route('kontak') }}" class="nav-item nav-link {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
             </div>
